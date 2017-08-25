@@ -1,0 +1,58 @@
+ <html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="scripts/graphviz.svg.css">
+	</head>
+
+	<style>
+        #instructions {
+            font-size: 14px;
+			font-family: sans-serif;
+			color: dimgrey;
+            position: absolute;
+            z-index: 100;
+            bottom: 10px;
+            left: 5px;
+        }
+    </style>
+	<body>
+		<p id="instructions">Click node to highlight;<br>Shift-scroll to zoom;<br>Esc to unhighlight<br><br>
+		References:<br>
+		<a href="https://github.com/mountainstorm/jquery.graphviz.svg" target="_blank">jquery.graphviz.svg</a><br>
+		<a href="https://jquery.com/download/" target="_blank">jquery</a><br>
+		<a href="https://github.com/jquery/jquery-color" target="_blank">jquery-color</a><br>
+		<a href="https://github.com/jquery/jquery-mousewheel" target="_blank">jquery-mousewheel</a><br>
+		<a href="http://getbootstrap.com/docs/3.3/getting-started/#download" target="_blank">bootstrap.min.js</a><br>
+		</p>
+		<div id="graph" style="width: 100%; height: 100%; overflow: scroll;"></div>
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="scripts/jquery.graphviz.svg.js"></script>
+		<script type="text/javascript">
+ 			$(document).ready(function(){
+                $("#graph").graphviz({
+                    url: "test 1.svg", 
+                    ready: function() {
+                        var gv = this
+                        gv.nodes().click(function () {
+                            var $set = $()
+                            $set.push(this)
+                            $set = $set.add(gv.linkedFrom(this, true))
+                            $set = $set.add(gv.linkedTo(this, true))
+                            gv.highlight($set, true)
+                            gv.bringToFront($set)
+                        })
+                        $(document).keydown(function (evt) {
+                            if (evt.keyCode == 27) {
+                                gv.highlight()
+                            }
+                        })
+                    }
+                });
+            });
+		</script>
+	</body>
+</html>
