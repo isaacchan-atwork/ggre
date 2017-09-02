@@ -1383,17 +1383,17 @@
 <!-- 渣古II (多安機)&#45;&gt;馬沙專用魔蟹 -->
 <!-- NodeA -->
 <!-- 自護號&#45;&gt;NodeA -->
-<!-- 吉鉧II (地球連邦軍) -->
-<g id="node74" class="node"><title>吉鉧II (地球連邦軍)</title>
+<!-- 吉姆II (地球連邦軍) -->
+<g id="node74" class="node"><title>吉姆II (地球連邦軍)</title>
 <g id="a_node74"><a xlink:href="https://wiki.dengekionline.com/ggre/MS%E4%B8%80%E8%A6%A7/%E3%82%B8%E3%83%A0II%EF%BC%88%E5%9C%B0%E7%90%83%E9%80%A3%E9%82%A6%E8%BB%8D%EF%BC%89" xlink:title="Cost 2 / 宇宙 B / 空中 &#45; / 地上 B / 水中 C">
 <polygon fill="#b2dfee" stroke="#b2dfee" points="1275.5,-1208 1139.5,-1208 1139.5,-1172 1275.5,-1172 1275.5,-1208"/>
-<text text-anchor="middle" x="1207.5" y="-1186.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">吉鉧II (地球連邦軍)</text>
+<text text-anchor="middle" x="1207.5" y="-1186.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">吉姆II (地球連邦軍)</text>
 </a>
 </g>
 </g>
 <!-- 高達MK&#45;II (奧干) -->
 <g id="node76" class="node"><title>高達MK&#45;II (奧干)</title>
-<g id="a_node76"><a xlink:title="Cost 2 / 宇宙 B / 空中 &#45; / 地上 B / 水中 B">
+<g id="a_node76"><a xlink:href="https://wiki.dengekionline.com/ggre/MS%E4%B8%80%E8%A6%A7/%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0M%EF%BD%8B%EF%BC%8DII%EF%BC%88%E3%82%A8%E3%82%A5%E3%83%BC%E3%82%B4%EF%BC%89" xlink:title="Cost 2 / 宇宙 B / 空中 &#45; / 地上 B / 水中 B">
 <polygon fill="#b2dfee" stroke="#b2dfee" points="1471,-1208 1349,-1208 1349,-1172 1471,-1172 1471,-1208"/>
 <text text-anchor="middle" x="1410" y="-1186.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">高達MK&#45;II (奧干)</text>
 </a>
@@ -1475,7 +1475,7 @@
 </g>
 <!-- 報喪女妖 -->
 <g id="node83" class="node"><title>報喪女妖</title>
-<g id="a_node83"><a xlink:title="Cost 3 / 宇宙 B / 空中 &#45; / 地上 B / 水中 B">
+<g id="a_node83"><a xlink:href="https://wiki.dengekionline.com/ggre/MS%E4%B8%80%E8%A6%A7/%E3%83%90%E3%83%B3%E3%82%B7%E3%82%A3" xlink:title="Cost 3 / 宇宙 B / 空中 &#45; / 地上 B / 水中 B">
 <polygon fill="#b2dfee" stroke="#b2dfee" points="1244,-1154 1171,-1154 1171,-1118 1244,-1118 1244,-1154"/>
 <text text-anchor="middle" x="1207.5" y="-1132.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">報喪女妖</text>
 </a>
