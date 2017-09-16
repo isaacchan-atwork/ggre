@@ -33,6 +33,10 @@
 		<script type="text/javascript" src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"></script>
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="scripts/jquery.graphviz.svg.js"></script>
+
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://d3js.org/d3-selection.v1.min.js"></script>
+
 		<script type="text/javascript">
  			$(document).ready(function(){
                 $("#graph").graphviz({
@@ -52,6 +56,97 @@
                                 gv.highlight()
                             }
                         })
+
+                        // Modify node color according to xlink:title when pressing specific key
+						$(document).keydown(function (evt) {
+							// This return the value of xlink:title of the first a element only
+							// var xtitle = d3.selectAll('a').attr('xlink:title');
+								
+							// Select all "a" nodes
+							var xtitle = d3.selectAll('a').nodes();
+
+							// Remove previous applied style before apply new one
+							// Used within switch statement
+							var xattr_reset = function () {
+								if (xattr) {
+									d3.select(xtitle[x]).select('polygon').style('fill',null).style('stroke',null);
+									d3.select(xtitle[x]).select('text').style('fill',null);
+								}
+							}
+
+							//console.log(xtitle.length);
+							for (x = 0; x < xtitle.length; x++) {
+								//console.log(xtitle[x]);
+
+								// check if this "a" nodes has "xlink:title" attribute
+								var xattr = d3.select(xtitle[x]).attr('xlink:title');
+								//console.log(xattr.search("System"));
+
+								// if the value of "xlink:title" attribute contains specific text, modify the node
+
+								// This change the style (CSS) and override attribute settings
+								// d3.select(xtitle[x]).select('polygon').style('fill', 'white').style('stroke', 'blue');
+
+								// This change the attribute and works with jquery.graphviz.svg reset function.
+								// d3.select(xtitle[x]).select('polygon').attr('fill','white').attr('stroke','blue');
+								//
+								// If need to modify text color, need to modify jquery.graphviz.svg:
+								// add "text" to the list of $el.find in setupNodesEdges, colorElement and restoreElement functions										
+								// d3.select(xtitle[x]).select('text').attr('fill','green');
+
+								switch (evt.keyCode) {
+									case 27:
+										//reset
+										xattr_reset();
+										break;
+									case 49:
+									case 97:
+										//宇宙 A
+										xattr_reset();
+										if (xattr && xattr.search("宇宙 A") >= 0) {
+											//d3.select(xtitle[x]).select('polygon').attr('fill','plum').attr('stroke','plum');
+											//d3.select(xtitle[x]).select('text').attr('fill','black');
+											d3.select(xtitle[x]).select('polygon').style('fill','plum').style('stroke','plum');
+											d3.select(xtitle[x]).select('text').style('fill','black');
+										}
+										break;
+									case 50:
+									case 98:
+										//空中 A
+										xattr_reset();
+										if (xattr && xattr.search("空中 A") >= 0) {
+											//console.log(d3.select(xtitle[x]).select('polygon').attr('fill'));
+											//d3.select(xtitle[x]).select('polygon').attr('fill','cadetblue').attr('stroke','cadetblue');
+											//d3.select(xtitle[x]).select('text').attr('fill','black');
+											d3.select(xtitle[x]).select('polygon').style('fill','cadetblue').style('stroke','cadetblue');
+											d3.select(xtitle[x]).select('text').style('fill','white');
+										}
+										break;
+									case 51:
+									case 99:
+										//地上 A
+										xattr_reset();
+										if (xattr && xattr.search("地上 A") >= 0) {
+											//d3.select(xtitle[x]).select('polygon').attr('fill','peru').attr('stroke','peru');
+											//d3.select(xtitle[x]).select('text').attr('fill','black');
+											d3.select(xtitle[x]).select('polygon').style('fill','peru').style('stroke','peru');
+											d3.select(xtitle[x]).select('text').style('fill','black');
+										}
+										break;
+									case 52:
+									case 100:
+										//水中 A
+										xattr_reset();
+										if (xattr && xattr.search("水中 A") >= 0) {
+											//d3.select(xtitle[x]).select('polygon').attr('fill','royalblue').attr('stroke','royalblue');
+											//d3.select(xtitle[x]).select('text').attr('fill','white');
+											d3.select(xtitle[x]).select('polygon').style('fill','royalblue').style('stroke','royalblue');
+											d3.select(xtitle[x]).select('text').style('fill','white');
+										}
+										break;
+								}
+							}
+                        });
                     }
                 });
             });

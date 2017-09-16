@@ -15,13 +15,13 @@
 <polygon fill="none" stroke="black" points="1122.5,-1030 1122.5,-1434 1943,-1434 1943,-1030 1122.5,-1030"/>
 <text text-anchor="start" x="1496.25" y="-1416.6" font-family="Microsoft JhengHei,sans-serif" font-weight="bold" font-size="18.00">獨立機體</text>
 </g>
-<g id="clust4" class="cluster"><title>cluster_terrain</title>
-<polygon fill="none" stroke="black" points="511.5,-1328 511.5,-1457 773.5,-1457 773.5,-1328 511.5,-1328"/>
-<text text-anchor="middle" x="642.5" y="-1441.8" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">地形適性</text>
-</g>
 <g id="clust3" class="cluster"><title>cluster_legend</title>
 <polygon fill="none" stroke="black" points="27,-1288 27,-1550 389.5,-1550 389.5,-1288 27,-1288"/>
 <text text-anchor="middle" x="208.25" y="-1534.8" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">圖例</text>
+</g>
+<g id="clust4" class="cluster"><title>cluster_terrain</title>
+<polygon fill="none" stroke="black" points="511.5,-1328 511.5,-1457 773.5,-1457 773.5,-1328 511.5,-1328"/>
+<text text-anchor="middle" x="642.5" y="-1441.8" font-family="Microsoft JhengHei,sans-serif" font-size="14.00">地形適性</text>
 </g>
 <!-- 球艇 -->
 <g id="node1" class="node"><title>球艇</title>
@@ -1788,26 +1788,38 @@
 </g>
 <!-- 宇宙 A -->
 <g id="node119" class="node"><title>宇宙 A</title>
+<g id="a_node119"><a xlink:title="宇宙 A">
 <polygon fill="white" stroke="white" points="577.5,-1426 519.5,-1426 519.5,-1390 577.5,-1390 577.5,-1426"/>
 <text text-anchor="middle" x="548.5" y="-1404.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00" fill="white">宇宙 A</text>
+</a>
+</g>
 </g>
 <!-- 空中 A -->
 <g id="node120" class="node"><title>空中 A</title>
+<g id="a_node120"><a xlink:title="空中 A">
 <polygon fill="white" stroke="white" points="765.5,-1426 707.5,-1426 707.5,-1390 765.5,-1390 765.5,-1426"/>
 <text text-anchor="middle" x="736.5" y="-1404.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00" fill="white">空中 A</text>
+</a>
+</g>
 </g>
 <!-- 宇宙 A&#45;&gt;空中 A -->
 <!-- NodeTA -->
 <!-- 空中 A&#45;&gt;NodeTA -->
 <!-- 地上 A -->
 <g id="node122" class="node"><title>地上 A</title>
+<g id="a_node122"><a xlink:title="地上 A">
 <polygon fill="white" stroke="white" points="577.5,-1372 519.5,-1372 519.5,-1336 577.5,-1336 577.5,-1372"/>
 <text text-anchor="middle" x="548.5" y="-1350.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00" fill="white">地上 A</text>
+</a>
+</g>
 </g>
 <!-- 水中 A -->
 <g id="node123" class="node"><title>水中 A</title>
+<g id="a_node123"><a xlink:title="水中 A">
 <polygon fill="white" stroke="white" points="765.5,-1372 707.5,-1372 707.5,-1336 765.5,-1336 765.5,-1372"/>
 <text text-anchor="middle" x="736.5" y="-1350.3" font-family="Microsoft JhengHei,sans-serif" font-size="14.00" fill="white">水中 A</text>
+</a>
+</g>
 </g>
 <!-- 地上 A&#45;&gt;水中 A -->
 <!-- NodeTB -->
