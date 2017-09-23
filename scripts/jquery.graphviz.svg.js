@@ -251,7 +251,7 @@
     $element.mousewheel(function (evt) {
         if (evt.shiftKey) {
           var percentage = that.zoom.percentage
-          percentage -= evt.deltaY * evt.deltaFactor
+          percentage += evt.deltaY * evt.deltaFactor
           if (percentage < 100.0) {
             percentage = 100.0
           }
