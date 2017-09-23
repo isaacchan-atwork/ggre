@@ -15,6 +15,18 @@
 		bottom: 10px;
 		left: 5px;
 	}
+	#highlight {
+		font-size: 16px;
+		font-weight: bold
+		font-family: "Microsoft JhengHei";
+		position: absolute;
+		z-index: 100;
+		bottom: 150px;
+		left: 5px;
+	}
+	mark {
+		padding: 0;
+	}
 	a {
 		text-decoration:none;
 	}
@@ -23,6 +35,9 @@
 	}
     </style>
 	<body>
+		<!-- Declare highlighted text -->
+		<div id="highlight"></div>
+
 		<p id="instructions"><span style="font-size:16; font-weight: bold;">使用說明：</span><br>
 		按 [1-4] 強調地形適性「宇宙 / 空中 / 地上 / 水中」A 之機體<br>按一下機體名來強調相關開發/設計路線<br>按 [Shift] 鍵再轉動滾輪可以放大<br>按 [Esc] 取消強調相關節點
 		</p>
@@ -51,11 +66,12 @@
                             gv.highlight($set, true)
                             gv.bringToFront($set)
                         })
-                        $(document).keydown(function (evt) {
+                        // Original highlight reset
+                        /*$(document).keydown(function (evt) {
                             if (evt.keyCode == 27) {
                                 gv.highlight()
                             }
-                        })
+                        })*/
 
                         // Modify node color according to xlink:title when pressing specific key
 						$(document).keydown(function (evt) {
@@ -68,84 +84,84 @@
 							// Remove previous applied style before apply new one
 							// Used within switch statement
 							var xattr_reset = function () {
-								if (xattr) {
-									d3.select(xtitle[x]).select('polygon').style('fill',null).style('stroke',null);
-									d3.select(xtitle[x]).select('text').style('fill',null);
+								for (x = 0; x < xtitle.length; x++) {
+									// check if this "a" nodes has "xlink:title" attribute
+									var xattr = d3.select(xtitle[x]).attr('xlink:title');
+									if (xattr) {
+										d3.select(xtitle[x]).select('ellipse,polygon').style('fill',null).style('stroke',null);
+										d3.select(xtitle[x]).select('text').style('fill',null);
+									}
 								}
+								
+								// Remove hightlighted text
+								var highlight = document.getElementById("highlight");
+								highlight.innerHTML = "";
 							}
 
-							//console.log(xtitle.length);
-							for (x = 0; x < xtitle.length; x++) {
-								//console.log(xtitle[x]);
+							// Apply highlight style
+							// Used within switch statement
+							var xattr_highlight = function (keyword, nodecolor, textcolor) {
+								for (x = 0; x < xtitle.length; x++) {
+									// check if this "a" nodes has "xlink:title" attribute
+									var xattr = d3.select(xtitle[x]).attr('xlink:title');
+									
+									// if the value of "xlink:title" attribute contains specific text, modify the node
 
-								// check if this "a" nodes has "xlink:title" attribute
-								var xattr = d3.select(xtitle[x]).attr('xlink:title');
-								//console.log(xattr.search("System"));
+									// This change the style (CSS) and override attribute settings
+									// d3.select(xtitle[x]).select('ellipse').style('fill', 'white').style('stroke', 'blue');
 
-								// if the value of "xlink:title" attribute contains specific text, modify the node
+									// This change the attribute and works with jquery.graphviz.svg reset function.
+									// d3.select(xtitle[x]).select('ellipse').attr('fill','white').attr('stroke','blue');
+									//
+									// If need to modify text color, need to modify jquery.graphviz.svg:
+									// add "text" to the list of $el.find in setupNodesEdges, colorElement and restoreElement functions										
+									// d3.select(xtitle[x]).select('text').attr('fill','green');
 
-								// This change the style (CSS) and override attribute settings
-								// d3.select(xtitle[x]).select('polygon').style('fill', 'white').style('stroke', 'blue');
-
-								// This change the attribute and works with jquery.graphviz.svg reset function.
-								// d3.select(xtitle[x]).select('polygon').attr('fill','white').attr('stroke','blue');
-								//
-								// If need to modify text color, need to modify jquery.graphviz.svg:
-								// add "text" to the list of $el.find in setupNodesEdges, colorElement and restoreElement functions										
-								// d3.select(xtitle[x]).select('text').attr('fill','green');
-
-								switch (evt.keyCode) {
-									case 27:
-										//reset
-										xattr_reset();
-										break;
-									case 49:
-									case 97:
-										//宇宙 A
-										xattr_reset();
-										if (xattr && xattr.search("宇宙 A") >= 0) {
-											//d3.select(xtitle[x]).select('polygon').attr('fill','plum').attr('stroke','plum');
-											//d3.select(xtitle[x]).select('text').attr('fill','black');
-											d3.select(xtitle[x]).select('polygon').style('fill','plum').style('stroke','plum');
-											d3.select(xtitle[x]).select('text').style('fill','black');
-										}
-										break;
-									case 50:
-									case 98:
-										//空中 A
-										xattr_reset();
-										if (xattr && xattr.search("空中 A") >= 0) {
-											//console.log(d3.select(xtitle[x]).select('polygon').attr('fill'));
-											//d3.select(xtitle[x]).select('polygon').attr('fill','cadetblue').attr('stroke','cadetblue');
-											//d3.select(xtitle[x]).select('text').attr('fill','black');
-											d3.select(xtitle[x]).select('polygon').style('fill','cadetblue').style('stroke','cadetblue');
-											d3.select(xtitle[x]).select('text').style('fill','white');
-										}
-										break;
-									case 51:
-									case 99:
-										//地上 A
-										xattr_reset();
-										if (xattr && xattr.search("地上 A") >= 0) {
-											//d3.select(xtitle[x]).select('polygon').attr('fill','peru').attr('stroke','peru');
-											//d3.select(xtitle[x]).select('text').attr('fill','black');
-											d3.select(xtitle[x]).select('polygon').style('fill','peru').style('stroke','peru');
-											d3.select(xtitle[x]).select('text').style('fill','black');
-										}
-										break;
-									case 52:
-									case 100:
-										//水中 A
-										xattr_reset();
-										if (xattr && xattr.search("水中 A") >= 0) {
-											//d3.select(xtitle[x]).select('polygon').attr('fill','royalblue').attr('stroke','royalblue');
-											//d3.select(xtitle[x]).select('text').attr('fill','white');
-											d3.select(xtitle[x]).select('polygon').style('fill','royalblue').style('stroke','royalblue');
-											d3.select(xtitle[x]).select('text').style('fill','white');
-										}
-										break;
+									if (xattr && xattr.search(keyword) >= 0) {
+										//d3.select(xtitle[x]).select('ellipse').attr('fill',nodecolor).attr('stroke',nodecolor);
+										//d3.select(xtitle[x]).select('text').attr('fill',textcolor);
+										d3.select(xtitle[x]).select('ellipse,polygon').style('fill',nodecolor).style('stroke',nodecolor);
+										d3.select(xtitle[x]).select('text').style('fill',textcolor);
+									}
 								}
+
+								// Declare hightlighted text
+								var highlight = document.getElementById("highlight");
+								highlight.innerHTML = "地形適性：<br><mark style=\"background-color:" + nodecolor + ";color:" + textcolor + ";\">&nbsp;" + keyword + "&nbsp;</mark>";
 							}
+
+							switch (evt.keyCode) {
+								case 27:
+									//reset
+									gv.highlight();
+									xattr_reset();
+									break;
+								case 49:
+								case 97:
+									//宇宙 A
+									xattr_reset();
+									xattr_highlight("宇宙 A", 'plum', 'black');
+									break;
+								case 50:
+								case 98:
+									//空中 A
+									xattr_reset();
+									xattr_highlight("空中 A", 'cadetblue', 'white');
+									break;
+								case 51:
+								case 99:
+									//地上 A
+									xattr_reset();
+									xattr_highlight("空中 A", 'peru', 'black');
+									break;
+								case 52:
+								case 100:
+									//水中 A
+									xattr_reset();
+									xattr_highlight("水中 A", 'royalblue', 'white');
+									break;
+							}
+
                         });
                     }
                 });
